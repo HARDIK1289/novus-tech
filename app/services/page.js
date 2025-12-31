@@ -150,16 +150,26 @@ export default function Services() {
         ))}
       </section>
 
-      {/* 4. PROCESS STEPS */}
-      <section className="py-32 px-6 max-w-5xl mx-auto relative z-10 text-center">
-         <h2 className="text-3xl md:text-5xl font-bold mb-16">How We <span className="text-secondary">Work</span></h2>
-         <div className="grid md:grid-cols-4 gap-8">
+      {/* 4. PROCESS STEPS (Responsive Fix) */}
+      <section className="py-32 px-6 max-w-5xl mx-auto relative z-10">
+         <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">How We <span className="text-secondary">Work</span></h2>
+         
+         <div className="relative grid md:grid-cols-4 gap-12 md:gap-8">
+            {/* Mobile Vertical Line (Only visible on small screens) */}
+            <div className="md:hidden absolute top-0 left-6 h-full w-[1px] bg-white/10 -z-10" />
+
             {['Discovery', 'Strategy', 'Build', 'Launch'].map((step, i) => (
-              <div key={i} className="relative">
-                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4 border border-white/20 text-xl font-bold">
+              <div key={i} className="relative flex md:block items-center md:text-center gap-8">
+                 
+                 {/* Circle Number */}
+                 <div className="w-12 h-12 shrink-0 rounded-full bg-black border border-white/20 flex items-center justify-center text-xl font-bold relative z-10 md:mx-auto md:mb-4 shadow-[0_0_15px_rgba(0,0,0,1)]">
                     {i + 1}
                  </div>
-                 <h3 className="text-xl font-bold mb-2">{step}</h3>
+                 
+                 {/* Text */}
+                 <h3 className="text-xl font-bold md:mb-2">{step}</h3>
+
+                 {/* Desktop Horizontal Line (Hidden on Mobile) */}
                  {i !== 3 && <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10 -z-10" />}
               </div>
             ))}

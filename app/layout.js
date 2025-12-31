@@ -20,7 +20,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* 3. Add the variable to the body class list */}
-      <body className={`${inter.className} ${spaceGrotesk.variable}`}>
+      // In app/layout.js
+<body className={`${inter.className} bg-black text-white overflow-x-hidden antialiased`}>
         <Navbar />
         {children}
       </body>
