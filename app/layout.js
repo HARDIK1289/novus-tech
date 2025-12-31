@@ -1,14 +1,14 @@
 import './globals.css';
-import { Inter, Space_Grotesk } from 'next/font/google'; // 1. Import the font
+import { Inter, Space_Grotesk } from 'next/font/google'; 
 import Navbar from '@/components/sections/Navbar';
+import Footer from '@/components/sections/Footer'; // <--- THIS WAS MISSING!
 
 const inter = Inter({ subsets: ['latin'] });
 
-// 2. Configure the Sci-Fi Font
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
-  weight: ['700'], // Bold only
-  variable: '--font-space', // This defines the CSS variable
+  weight: ['700'], 
+  variable: '--font-space', 
 });
 
 export const metadata = {
@@ -19,9 +19,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* 1. overflow-x-hidden here forces the mobile screen to stay strict */}
+      {/* overflow-x-hidden fixes the hamburger menu alignment */}
       <body className={`${inter.className} bg-black text-white overflow-x-hidden w-full relative antialiased`}>
-        {/* 2. Ensure Navbar and Footer are INSIDE this body */}
         <Navbar />
         {children}
         <Footer />
