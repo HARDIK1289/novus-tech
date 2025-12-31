@@ -19,11 +19,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* 3. Add the variable to the body class list */}
-      // In app/layout.js
-<body className={`${inter.className} bg-black text-white overflow-x-hidden antialiased`}>
+      {/* 1. overflow-x-hidden here forces the mobile screen to stay strict */}
+      <body className={`${inter.className} bg-black text-white overflow-x-hidden w-full relative antialiased`}>
+        {/* 2. Ensure Navbar and Footer are INSIDE this body */}
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
