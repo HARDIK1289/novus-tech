@@ -19,6 +19,8 @@
     "react-dom": "19.2.3",
     "react-hook-form": "^7.69.0",
     "react-tsparticles": "^2.12.2",
+    "resend": "^6.9.4",
+    "sanitize-html": "^2.17.2",
     "tailwind-merge": "^3.4.0",
     "tsparticles-slim": "^2.12.0"
   },
