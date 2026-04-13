@@ -11,6 +11,11 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+      required: true,
+      maxlength: 20,
+    },
     message: {
       type: String,
       required: true,

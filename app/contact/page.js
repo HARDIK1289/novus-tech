@@ -5,27 +5,39 @@ import ParticlesBackground from '@/components/ui/ParticlesBackground';
 import { Mail, MapPin, Phone, Send, Loader2, CheckCircle } from 'lucide-react';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
 
     try {
+      const payload = {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+      };
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
         setStatus('success');
-        setForm({ name: '', email: '', message: '' });
+        setForm({ name: '', email: '', phone: '', message: '' });
+        setErrorMessage('');
       } else {
+        const errorData = await res.json().catch(() => ({ error: 'Something went wrong' }));
+        setErrorMessage(errorData.error || 'Something went wrong');
         setStatus('error');
       }
     } catch (error) {
+      setErrorMessage('Network error. Please try again.');
       setStatus('error');
     }
   };
@@ -79,7 +91,8 @@ export default function Contact() {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <>
+              <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-gray-400 mb-2">Name</label>
                 <input 
@@ -101,6 +114,18 @@ export default function Contact() {
                   placeholder="john@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-gray-400 mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-secondary focus:outline-none transition"
+                  placeholder="+91 123 456 7890"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 />
               </div>
 
@@ -128,6 +153,17 @@ export default function Contact() {
                 )}
               </button>
             </form>
+
+            {status === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-center"
+              >
+                <p className="text-red-400 font-medium">{errorMessage}</p>
+              </motion.div>
+            )}
+            </>
           )}
         </motion.div>
 

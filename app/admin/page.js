@@ -9,11 +9,23 @@ export default function AdminDashboard() {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // Check if already authenticated
+    const auth = localStorage.getItem('novus_admin_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+      fetchLeads();
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
   // Simple "Hardcoded" Security for MVP
   const handleLogin = (e) => {
     e.preventDefault();
     if (password === "novus123") { // CHANGE THIS PASSWORD!
       setIsAuthenticated(true);
+      localStorage.setItem('novus_admin_auth', 'true');
       fetchLeads();
     } else {
       alert("Wrong Password");
@@ -77,12 +89,24 @@ export default function AdminDashboard() {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-white">Leads <span className="text-secondary">Dashboard</span></h1>
-          <button 
-            onClick={downloadCSV}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg font-bold transition"
-          >
-            <Download size={20} /> Download Excel
-          </button>
+          <div className="flex gap-4">
+            <button 
+              onClick={downloadCSV}
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg font-bold transition"
+            >
+              <Download size={20} /> Download Excel
+            </button>
+            <button 
+              onClick={() => {
+                setIsAuthenticated(false);
+                localStorage.removeItem('novus_admin_auth');
+                setLeads([]);
+              }}
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-bold transition"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <div className="glass-card rounded-xl overflow-hidden border border-white/10">
@@ -93,6 +117,7 @@ export default function AdminDashboard() {
                   <th className="p-4">Date</th>
                   <th className="p-4">Name</th>
                   <th className="p-4">Email</th>
+                  <th className="p-4">Phone</th>
                   <th className="p-4">Message</th>
                   <th className="p-4">IP</th>
                 </tr>
@@ -105,6 +130,7 @@ export default function AdminDashboard() {
                     </td>
                     <td className="p-4 font-bold text-white">{lead.name}</td>
                     <td className="p-4 text-secondary">{lead.email}</td>
+                    <td className="p-4 text-gray-300">{lead.phone}</td>
                     <td className="p-4 text-gray-300 max-w-md truncate">{lead.message}</td>
                     <td className="p-4 text-gray-500 text-xs font-mono">{lead.ip}</td>
                   </tr>

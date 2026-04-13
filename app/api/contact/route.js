@@ -18,6 +18,17 @@ function isBot(userAgent) {
   );
 }
 
+export async function GET() {
+  try {
+    await dbConnect();
+    const contacts = await Contact.find({}).sort({ createdAt: -1 });
+    return NextResponse.json({ success: true, data: contacts });
+  } catch (error) {
+    console.error("GET ERROR:", error);
+    return NextResponse.json({ success: false, error: "Failed to fetch contacts" }, { status: 500 });
+  }
+}
+
 export async function POST(req) {
   try {
     await dbConnect();
@@ -62,6 +73,11 @@ export async function POST(req) {
       allowedAttributes: {},
     }).trim();
 
+    const cleanPhone = sanitizeHtml(parsed.data.phone, {
+      allowedTags: [],
+      allowedAttributes: {},
+    }).trim();
+
     const cleanMessage = sanitizeHtml(parsed.data.message, {
       allowedTags: [],
       allowedAttributes: {},
@@ -70,21 +86,28 @@ export async function POST(req) {
     // post-sanitize validation
     if (!cleanName || cleanName.length < 2) {
       return NextResponse.json(
-        { success: false, error: "Invalid input" },
+        { success: false, error: "Name must be at least 2 characters long" },
         { status: 400 }
       );
     }
 
     if (!cleanEmail) {
       return NextResponse.json(
-        { success: false, error: "Invalid input" },
+        { success: false, error: "Please enter a valid email address" },
         { status: 400 }
       );
     }
 
-    if (!cleanMessage || cleanMessage.length < 5) {
+    if (!cleanPhone || cleanPhone.length < 8) {
       return NextResponse.json(
-        { success: false, error: "Invalid input" },
+        { success: false, error: "Phone number must be at least 8 characters long" },
+        { status: 400 }
+      );
+    }
+
+    if (!cleanMessage || cleanMessage.length < 10) {
+      return NextResponse.json(
+        { success: false, error: "Message must be at least 10 characters long" },
         { status: 400 }
       );
     }
@@ -106,6 +129,7 @@ export async function POST(req) {
     const newContact = await Contact.create({
       name: cleanName,
       email: cleanEmail,
+      phone: cleanPhone,
       message: cleanMessage,
       ip,
     });
@@ -114,6 +138,7 @@ export async function POST(req) {
     sendContactEmail({
       name: cleanName,
       email: cleanEmail,
+      phone: cleanPhone,
       message: cleanMessage,
     }).catch((err) => {
       console.error("[EMAIL ERROR]", err.message);

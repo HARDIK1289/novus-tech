@@ -60,7 +60,7 @@ export default function Navbar() {
                             : 'border border-white/20 text-white hover:bg-white/10'
                             }`}
                     >
-                        Start Project
+                        Connect Now
                     </Link>
                 </div>
 

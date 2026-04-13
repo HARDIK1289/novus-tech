@@ -1,7 +1,7 @@
 import './globals.css';
 import { Inter, Space_Grotesk } from 'next/font/google'; 
 import Navbar from '@/components/sections/Navbar';
-import Footer from '@/components/sections/Footer'; // <--- THIS WAS MISSING!
+import FooterSection from '@/components/sections/FooterSection';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +23,8 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-black text-white overflow-x-hidden w-full relative antialiased`}>
         <Navbar />
         {children}
-        <Footer />
+        {/* <Footer /> */}
+        <FooterSection/>
       </body>
     </html>
   );
