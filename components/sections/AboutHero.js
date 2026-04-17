@@ -15,7 +15,7 @@ export default function AboutHero() {
         <Terminal size={48} className="text-secondary" />
       </motion.div>
 
-      <AnimatedTitle text="Engineers at Heart." className="text-5xl md:text-7xl font-black mb-6" />
+      <AnimatedTitle text="Engineers at Heart" className="text-4xl sm:text-5xl md:text-7xl font-black mb-6" />
 
       <motion.p
         initial={{ opacity: 0, y: 20 }}

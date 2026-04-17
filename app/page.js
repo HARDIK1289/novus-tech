@@ -22,29 +22,6 @@ const faqs = [
   { q: "Do you work with startups?", a: "Yes. We specialize in taking startups from 'Zero' to 'Launch'—covering Tech, Design, and Marketing in one go." },
 ];
 
-const projects = [
-  {
-    title: "GroundTruth",
-    cat: "AI Misinformation Detection",
-    desc: "An AI-powered engine that analyzes viral patterns to detect fake news in real-time.",
-    tech: ["Python", "Next.js", "ML"],
-    color: "from-blue-500 to-cyan-500"
-  },
-  {
-    title: "Aarogya Link",
-    cat: "Healthcare Platform",
-    desc: "Connecting rural patients with ASHA workers through a seamless PWA interface.",
-    tech: ["React", "MongoDB", "Node.js"],
-    color: "from-emerald-500 to-green-500"
-  },
-  {
-    title: "Novus Commerce",
-    cat: "E-Commerce Engine",
-    desc: "A headless e-commerce solution built for extreme speed and conversion optimization.",
-    tech: ["Next.js", "Stripe", "Tailwind"],
-    color: "from-purple-500 to-pink-500"
-  }
-];
 
 export default function Home() {
   const fadeInUp = {

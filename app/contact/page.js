@@ -54,7 +54,7 @@ export default function Contact() {
            animate={{ opacity: 1, x: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-black mb-8">Let's <span className="text-secondary">Talk.</span></h1>
+          <h1 className="text-5xl md:text-7xl font-black mb-8">Let's <span className="text-secondary">Talk</span></h1>
           <p className="text-gray-400 text-lg mb-12 leading-relaxed">
             Have a project in mind? Or just want to discuss the future of tech? 
             We are always open to new ideas and challenges.
@@ -99,7 +99,7 @@ export default function Contact() {
                   type="text" 
                   required
                   className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-secondary focus:outline-none transition"
-                  placeholder="John Doe"
+                  placeholder="Enter your name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
@@ -111,7 +111,7 @@ export default function Contact() {
                   type="email" 
                   required
                   className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-secondary focus:outline-none transition"
-                  placeholder="john@example.com"
+                  placeholder="Enter your email Id"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />

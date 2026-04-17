@@ -37,18 +37,18 @@ export default function ProcessStepsSection() {
         How We <span className="text-gradient">Work</span>
       </h2>
 
-      <div className="relative">
+      <div className="relative overflow-x-hidden md:overflow-visible pb-6">
         {/* Line */}
-        <div className="hidden md:block absolute top-6 left-0 right-0 h-[1px] bg-white/10" />
+        <div className="absolute top-7 left-4 right-4 h-[1px] bg-white/10" />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 text-center">
+        <div className="flex justify-between md:grid md:grid-cols-4 gap-8 text-center">
           {steps.map((step, i) => {
             const isActive = active === i;
 
             return (
               <div
                 key={i}
-                className="relative flex flex-col items-center"
+                className="relative flex flex-col items-center group cursor-pointer"
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive(null)}
                 onClick={() => setActive(isActive ? null : i)} // mobile
@@ -57,9 +57,9 @@ export default function ProcessStepsSection() {
                 <div
                   className={`absolute bottom-full mb-2 w-64 px-4 py-3 rounded-xl bg-black/90 border border-white/10 text-sm text-gray-300 transition-all duration-300 ${
                     isActive
-                      ? 'opacity-100 translate-y-0'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
                       : 'opacity-0 translate-y-2 pointer-events-none'
-                  }`}
+                  } group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto`}
                 >
                   {step.detail}
                 </div>
@@ -69,7 +69,7 @@ export default function ProcessStepsSection() {
                   className={`w-14 h-14 rounded-full flex items-center justify-center border transition-all duration-300 ${
                     isActive
                       ? 'bg-secondary text-black border-secondary scale-110'
-                      : 'bg-black border-white/20 text-white'
+                      : 'bg-black border-white/20 text-white group-hover:bg-secondary group-hover:text-black group-hover:border-secondary group-hover:scale-110'
                   }`}
                 >
                   <step.icon size={22} />

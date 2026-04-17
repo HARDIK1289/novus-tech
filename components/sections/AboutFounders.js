@@ -5,7 +5,7 @@ const founders = [
   {
     name: 'Hardik Chaplot',
     title: 'Co-Founder & CEO',
-    description: 'Tech visionary with 8+ years in AI and full-stack development. Passionate about building scalable systems that push the boundaries of modern web technology.',
+    description: 'Tech visionary with experience in AI and full-stack development. Passionate about building scalable systems that push the boundaries of modern web technology.',
     phone: '+91 98678 16863',
     location: 'Mumbai, India'
   },

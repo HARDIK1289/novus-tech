@@ -26,8 +26,13 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #030305; /* Deep Black Base */
-  overflow-x: hidden;  /* MOVED HERE: This fixes the sticky scroll */
+  overflow-x: hidden;
   width: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 /* 3. CUSTOM UTILITIES */
@@ -69,7 +74,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
-/* ... existing code ... */
+
+/* Prevent mobile text zoom on iOS */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
 
 /* Add this at the bottom of globals.css */
 @keyframes scroll {

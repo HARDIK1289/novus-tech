@@ -23,7 +23,7 @@ export default function AboutStory() {
           <div className="absolute -left-8 top-0 h-full w-1 bg-gradient-to-b from-secondary to-transparent opacity-30 hidden md:block" />
           <h2 className="text-4xl md:text-5xl font-bold leading-tight">The <span className="text-gradient">Mission</span> to Upgrade the Web.</h2>
           <p className="text-gray-300 text-lg leading-relaxed">
-            The web has changed. It used to be about static documents. Now, it's about **dynamic, app-like experiences**.
+            The web has changed. It used to be about static documents. Now, it's about <strong>dynamic, app-like experiences</strong>.
           </p>
           <p className="text-gray-400 leading-relaxed text-lg">
             Most agencies are stuck in the past, using outdated drag-and-drop tools that slow down your business. We take a different approach. We hand-code our solutions using the same technology (Next.js) used by Netflix, TikTok, and Twitch.

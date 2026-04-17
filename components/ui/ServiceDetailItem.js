@@ -33,7 +33,7 @@ export default function ServiceDetailItem({ service, index }) {
         </Link>
       </div>
 
-      <div className="flex-1 w-full">
+      <div className="hidden md:flex-1 md:block w-full">
         <div className="glass-card p-10 rounded-3xl border border-white/10 aspect-square flex items-center justify-center relative overflow-hidden group">
           <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-current opacity-20 blur-[100px] rounded-full ${service.color}`} />
           {service.id === 'dev' && (

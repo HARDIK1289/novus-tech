@@ -13,7 +13,7 @@ export default function VisionSection() {
         >
           <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
             Our Goal is <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-secondary to-purple-500">Simple.</span>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-secondary to-purple-500">Simple</span>
           </h2>
           <p className="text-xl text-gray-300 leading-relaxed mb-6">
             We believe that great software shouldn't just "work"—it should feel magic. 

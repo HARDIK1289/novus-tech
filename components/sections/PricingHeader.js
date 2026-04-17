@@ -8,7 +8,7 @@ export default function PricingHeader() {
         animate={{ opacity: 1, y: 0 }}
         className="text-5xl md:text-7xl font-black mb-6"
       >
-        Flexible <span className="text-secondary">Engagements.</span>
+        Flexible <span className="text-secondary">Engagements</span>
       </motion.h1>
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
